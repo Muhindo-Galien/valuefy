@@ -310,7 +310,7 @@ export default function Home() {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/Mystical94/defi_sui/blob/master/contracts/Lending.move"
+            href="https://github.com/Muhindo-Galien/valuefy/blob/master/contracts/Lending.move"
             className={styles.navlink}
           >
             View on GitHub ↗
@@ -342,7 +342,7 @@ export default function Home() {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/Mystical94/defi_sui/blob/master/contracts/Staking.move"
+            href="https://github.com/Muhindo-Galien/valuefy/blob/master/contracts/Staking.move"
             className={styles.navlink}
           >
             View on GitHub ↗
@@ -372,7 +372,7 @@ export default function Home() {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/Mystical94/defi_sui/blob/master/contracts/Vault.move"
+            href="https://github.com/Muhindo-Galien/valuefy/blob/master/contracts/Vault.move"
             className={styles.navlink}
           >
             View on GitHub ↗
