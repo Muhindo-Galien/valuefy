@@ -7,6 +7,7 @@ import title from "../src/assets/title.png";
 import Link from "next/link";
 import { useEffect } from "react";
 
+
 import Prism from "prismjs";
 
 import "prismjs/themes/prism-okaidia.css";
