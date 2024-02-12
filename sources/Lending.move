@@ -1,17 +1,17 @@
 module LendingPool {
-    use DacadeDeepbook::book;
-    use DacadeDeepbook::custodian;
     use Sui::coin::{Coin, Self};
     use Sui::tx_context::TxContext;
     use Sui::transfer::Self;
     use Sui::clock::Clock;
 
-    resource Lender {
+    // Struct to represent a lender
+    struct Lender {
         address: address,
         amount: u64,
     }
 
-    resource Borrower {
+    // Struct to represent a borrower
+    struct Borrower {
         address: address,
         amount: u64,
         borrow_timestamp: u64,
@@ -51,10 +51,7 @@ module LendingPool {
         let coin: Coin<T>;
         coin = Coin<T>::new(amount);
 
-        let account_cap: &custodian::AccountCap;
-        account_cap = custodian::create_account();
-
-        book::make_base_deposit(pool, move(coin), account_cap);
+        book::make_base_deposit(pool, move(coin), custodian::create_account());
         
         // Record the lender
         let sender: address;
@@ -89,10 +86,7 @@ module LendingPool {
         let coin: Coin<T>;
         coin = Coin<T>::new(amount);
 
-        let account_cap: &custodian::AccountCap;
-        account_cap = custodian::create_account();
-
-        book::make_base_deposit(pool, move(coin), account_cap);
+        book::make_base_deposit(pool, move(coin), custodian::create_account());
     }
 
     // Function to calculate interest
@@ -133,10 +127,7 @@ module LendingPool {
         let coin: Coin<T>;
         coin = Coin<T>::new(amount + interest);
 
-        let account_cap: &custodian::AccountCap;
-        account_cap = custodian::create_account();
-
-        book::make_base_deposit(pool, move(coin), account_cap);
+        book::make_base_deposit(pool, move(coin), custodian::create_account());
 
         // Remove borrower from the list
         pool.borrowers.swap_remove(borrower_index as usize);
@@ -171,10 +162,7 @@ module LendingPool {
         let coin: Coin<T>;
         coin = Coin<T>::new(amount + interest);
 
-        let account_cap: &custodian::AccountCap;
-        account_cap = custodian::create_account();
-
-        book::make_base_deposit(pool, move(coin), account_cap);
+        book::make_base_deposit(pool, move(coin), custodian::create_account());
 
         // Remove lender from the list
         pool.lenders.swap_remove(lender_index as usize);
