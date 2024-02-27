@@ -1,5 +1,5 @@
 module LendingPool {
-    use Sui::coin::{Coin, Self};
+    use Sui::coin::{Coin};
     use Sui::tx_context::TxContext;
     use Sui::transfer::Self;
     use Sui::clock::Clock;
@@ -25,8 +25,8 @@ module LendingPool {
         base_balance: u64,
         quote_balance: u64,
         interest_rate: u64,
-        lenders: vector<u8, Lender>,
-        borrowers: vector<u8, Borrower>,
+        lenders: vector<Lender>,
+        borrowers: vector<Borrower>,
     }
 
     public fun create_pool(pool_address: address, base_cap: u64, quote_cap: u64, interest_rate: u64) {
@@ -34,13 +34,13 @@ module LendingPool {
             pool_address: pool_address,
             base_cap: base_cap,
             quote_cap: quote_cap,
-            base_balance: 0,
-            quote_balance: 0,
+            base_balance:  0,
+            quote_balance:  0,
             interest_rate: interest_rate,
-            lenders: Vector(),
-            borrowers: Vector(),
+            lenders: Vector::empty(),
+            borrowers: Vector::empty(),
         };
-        move_to<T>(new_pool, pool_address);
+        move_to<Pool>(new_pool, pool_address);
     }
 
     public fun lend_to_pool(pool_address: address, amount: u64) {
